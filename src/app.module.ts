@@ -19,10 +19,10 @@ import { PlayersService } from './models/players/services/player.service';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       autoLoadEntities: true,
-      synchronize: true, 
+      synchronize: true, // Aquí puedes cambiar a false en producción para desactivar la sincronización automática
       entities: [PlayersEntity],
       extra: {
-        ssl: true, 
+        ssl: true, // Ajusta según la configuración de tu base de datos
       },
     }),
     TypeOrmModule.forFeature([PlayersEntity]),

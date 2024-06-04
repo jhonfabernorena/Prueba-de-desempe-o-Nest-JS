@@ -8,13 +8,14 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 export class PlayersController {
     constructor(private readonly PlayersService: PlayersService) {}
 
-    @Post("/create")
-    @ApiOperation({summary: "Create player", description: "create a player for a tournament"})
-    @ApiResponse({status: 201, description: "Player created"})
-    @ApiResponse({status: 400, description: "Bad Request"})
-    create(@Body() createPlayerDto: CreatePlayerDto) {
-        return this.PlayersService.create(createPlayerDto);
-}   
+   @Post("/create")
+  @ApiOperation({ summary: 'Create player', description: 'Create a player for a tournament' })
+  @ApiResponse({ status: 201, description: 'Player created' })
+  @ApiResponse({ status: 400, description: 'Bad Request' })
+ @ApiResponse({status: 500, description: 'An internal server error occurred while creating the player.'})
+  create(@Body() createPlayerDto: CreatePlayerDto) {
+    return this.PlayersService.create(createPlayerDto);
+  }
 
     @Get("/all")
     @ApiOperation({summary: "Get all players", description: "get all players registers in the db"})
