@@ -13,7 +13,9 @@ export class ResultsService {
 
   async create(createResultDto: CreateResultDto) {
     //const result = this.resultRepository.create(createResultDto);
-    //return await this.resultRepository.save(result);
+    //await this.resultRepository.save(result);
+   //return result;
+    
   }
 
   async findAll() {
