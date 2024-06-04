@@ -11,12 +11,12 @@ export class ResultsService {
     private readonly resultRepository: Repository<ResultsEntity>,
   ) {}
 
-  async create(createResultDto: CreateResultDto) {
-    //const result = this.resultRepository.create(createResultDto);
-    //await this.resultRepository.save(result);
-   //return result;
-    
+  async create(CreateResultDto: CreateResultDto) {
+    const result = this.resultRepository.create();
+    await this.resultRepository.save(result);
+    return result;
   }
+
 
   async findAll() {
 }

@@ -29,6 +29,8 @@ export class ResultsController {
     @Get("/:id")
     @ApiOperation({summary: "Get a result by id", description: "Get a result by id"})
     @ApiResponse({status: 200, description: "Result found"})
+    @ApiResponse({status: 500, description: "internal server error"})
+    @ApiResponse({status: 400, description: "Bad Request: The result could not be found."})
     @ApiResponse({status: 404, description: "Result not found"})
     async findOne(@Param('id') id: number) {
         const result = await this.ResultsService.findOne(id);
@@ -39,6 +41,7 @@ export class ResultsController {
     @Put("/:id")
     @ApiOperation({summary: "Update a result by id", description: "Update a result by id"})
     @ApiResponse({status: 200, description: "Result updated"})
+    @ApiResponse({status: 500, description: "internal server error"})
     @ApiResponse({status: 404, description: "Result not found"})
     async update(@Param('id') id: string, @Body() updateResultDto: UpdateResultDto) {
         const result = await this.ResultsService.update(id, updateResultDto);
@@ -49,6 +52,7 @@ export class ResultsController {
     @Delete("/:id")
     @ApiOperation({summary: "Delete a result by id", description: "Delete a result by id"})
     @ApiResponse({status: 200, description: "Result deleted"})
+    @ApiResponse({status: 500, description: "internal server error"})
     @ApiResponse({status: 404, description: "Result not found"})
     async remove(@Param('id') id: number) {
         const result = await this.ResultsService.remove(id);

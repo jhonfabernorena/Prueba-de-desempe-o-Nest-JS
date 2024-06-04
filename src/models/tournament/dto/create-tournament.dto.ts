@@ -13,8 +13,5 @@ export class CreateTournamentDto {
     @IsNotEmpty()
    readonly description: string;
 
-    @ApiProperty()
-    @IsString()
-    @IsNotEmpty()
-   readonly awards: Number;
+
 }

@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { CreatePlayerDto, UpdatePlayerDto } from '../dto';
+import { CreatePlayerDto, FilterDto, UpdatePlayerDto } from '../dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PlayersEntity } from '../entities/players.entity';
-import { Repository } from 'typeorm'
+import { ILike, Repository } from 'typeorm'
 
 @Injectable()
 export class PlayersService {
@@ -19,6 +19,24 @@ export class PlayersService {
     {
         return await this.playerRepository.find();
     }
+      async findAllPlayerFilter({
+    limit,
+    offset,
+    search,
+    sortBy,
+    order,
+  }: FilterDto): Promise<PlayersEntity[]> {
+    return await this.playerRepository.find({
+      where: {
+        username: ILike(`%${search}%`),
+      },
+      order: {
+        [sortBy]: order,
+      },
+      skip: offset,
+      take: limit,
+    });
+  }
 
      async findOne(id: number) {
     const player = await this.playerRepository.findOneBy({ id });
@@ -47,4 +65,5 @@ export class PlayersService {
         return await this.playerRepository.remove(player);
     }
 
+    
 }
