@@ -1,17 +1,17 @@
-// import {resultEntity} from "src/models/result/entities/result.entity"
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+// import { GameResult } from './result.entity';
 
 @Entity()
 export class PlayersEntity {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    username: string;
+  @Column()
+  username: string;
 
-    @Column()
-    email: string;
+  @Column()
+  email: string;
 
-   // @OneToMany(() => resultEntity, (result) => result)
-    // results: resultEntity[]
+  //@OneToMany(() => GameResult, gameResult => gameResult.player)
+  //gameResults: GameResult[];
 }

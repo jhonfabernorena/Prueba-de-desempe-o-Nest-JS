@@ -20,11 +20,11 @@ export class PlayersService {
     }
 
      async findOne(id: number) {
-    const author = await this.playerRepository.findOneBy({ id });
+    const player = await this.playerRepository.findOneBy({ id });
 
-    if (!author) throw new NotFoundException(`Author with id ${id} not found`);
+    if (!player) throw new NotFoundException(`Author with id ${id} not found`);
 
-    return author;
+    return player;
   }
 
     async update(id: string, updatePlayerDto: UpdatePlayerDto) {

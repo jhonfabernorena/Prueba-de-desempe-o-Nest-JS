@@ -3,9 +3,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsString, IsNotEmpty, IsEmail } from 'class-validator';
 
 export class CreatePlayerDto {
-  @IsString()
-  @IsNotEmpty()
-  readonly username: string;
+ 
 
   @ApiProperty()
   @IsString()
@@ -15,6 +13,6 @@ export class CreatePlayerDto {
   @ApiProperty()
   @IsString()
   @IsNotEmpty()
-  readonly Username: string;
+  readonly username: string;
 
 }

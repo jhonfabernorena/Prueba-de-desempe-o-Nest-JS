@@ -4,6 +4,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { PlayersController } from './models/players/controllers/player.controller';
 import { PlayersEntity } from './models/players/entities/players.entity';
 import { PlayersService } from './models/players/services/player.service';
+import { TournamentController } from './models/tournament/controllers/tournament.controller';
+import { tournamentEntity } from './models/tournament/entities/tournament.entity';
+import { TournamentService } from './models/tournament/services/tournament.service';
+
+
 
 @Module({
   imports: [
@@ -20,14 +25,14 @@ import { PlayersService } from './models/players/services/player.service';
       database: process.env.DB_NAME,
       autoLoadEntities: true,
       synchronize: true, // Aquí puedes cambiar a false en producción para desactivar la sincronización automática
-      entities: [PlayersEntity],
+      entities: [PlayersEntity, tournamentEntity],
       extra: {
         ssl: true, // Ajusta según la configuración de tu base de datos
       },
     }),
-    TypeOrmModule.forFeature([PlayersEntity]),
+    TypeOrmModule.forFeature([PlayersEntity, tournamentEntity]),
   ],
-  controllers: [PlayersController],
-  providers: [PlayersService],
+  controllers: [PlayersController, TournamentController],
+  providers: [PlayersService, TournamentService],
 })
 export class AppModule {}
