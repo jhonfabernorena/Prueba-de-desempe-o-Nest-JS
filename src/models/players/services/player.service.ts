@@ -9,10 +9,11 @@ export class PlayersService {
     constructor (@InjectRepository(PlayersEntity) private readonly playerRepository: Repository<PlayersEntity>)
     {}
 
-    async create(createPlayerDto: CreatePlayerDto) {
-        const player = this.playerRepository.create(createPlayerDto);
+    async create(CreatePlayerDto: CreatePlayerDto) {
+        const player = this.playerRepository.create(CreatePlayerDto);
         return await this.playerRepository.save(player);
     }
+    
 
     async findAll()
     {

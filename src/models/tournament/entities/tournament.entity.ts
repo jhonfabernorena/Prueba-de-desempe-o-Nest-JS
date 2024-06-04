@@ -9,8 +9,7 @@ export class tournamentEntity {
   @Column()
   name: string;
 
-  @Column({ type: 'timestamp' })
-  date: Date;
+
 
   @ManyToMany(() => PlayersEntity)
   @JoinTable()

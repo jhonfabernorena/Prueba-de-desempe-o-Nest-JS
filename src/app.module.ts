@@ -7,8 +7,9 @@ import { PlayersService } from './models/players/services/player.service';
 import { TournamentController } from './models/tournament/controllers/tournament.controller';
 import { tournamentEntity } from './models/tournament/entities/tournament.entity';
 import { TournamentService } from './models/tournament/services/tournament.service';
-
-
+import { ResultsController } from './models/results/controller/result.controller';
+import { ResultsEntity } from './models/results/entities/result.entity';
+import { ResultsService } from './models/results/services/result.service';
 
 @Module({
   imports: [
@@ -24,15 +25,15 @@ import { TournamentService } from './models/tournament/services/tournament.servi
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       autoLoadEntities: true,
-      synchronize: true, // Aquí puedes cambiar a false en producción para desactivar la sincronización automática
-      entities: [PlayersEntity, tournamentEntity],
+      synchronize: true, 
+      entities: [PlayersEntity, tournamentEntity, ResultsEntity],
       extra: {
-        ssl: true, // Ajusta según la configuración de tu base de datos
+        ssl: true, 
       },
     }),
-    TypeOrmModule.forFeature([PlayersEntity, tournamentEntity]),
+    TypeOrmModule.forFeature([PlayersEntity, tournamentEntity, ResultsEntity]),
   ],
-  controllers: [PlayersController, TournamentController],
-  providers: [PlayersService, TournamentService],
+  controllers: [PlayersController, TournamentController, ResultsController],
+  providers: [PlayersService, TournamentService, ResultsService],
 })
 export class AppModule {}
